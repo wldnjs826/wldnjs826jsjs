@@ -193,7 +193,7 @@ certificates.html, cert.css
 ---
 
 ## 파일 구조
-
+***
 portfolio-website/
 ├── index.html
 ├── about.html
@@ -219,11 +219,7 @@ portfolio-website/
 ├── server.js
 ├── package.json
 └── README.md
-
-yaml
-복사
-편집
-
+***
 ---
 
 ## 배포 정보
