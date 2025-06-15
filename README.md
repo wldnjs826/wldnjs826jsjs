@@ -79,7 +79,8 @@ resume.js, 메인 HTML(index.html 등) 내 <a download> 태그
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-}); ```
+});
+```
 
 
 2. 방명록
