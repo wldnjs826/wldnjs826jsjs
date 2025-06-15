@@ -65,17 +65,13 @@ VSCode · Chrome DevTools · LiveServer
 
 ## 추가 기능 및 이력
 
-1. 이력서 다운로드
-설명
+### 1. 이력서 다운로드
+#### 설명
 버튼 클릭 시 PDF 이력서를 즉시 다운로드
-코드 위치
+#### 코드 위치
 resume.js, 메인 HTML(index.html 등) 내 <a download> 태그
-코드 설명
-
-js
-복사
-편집
-resumeDownloadBtn.addEventListener('click', () => {
+#### 코드 설명
+``` resumeDownloadBtn.addEventListener('click', () => {
   const resumePath = 'assets/resume.pdf';
   const link = document.createElement('a');
   link.href = resumePath;
@@ -83,7 +79,9 @@ resumeDownloadBtn.addEventListener('click', () => {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-});
+});```
+
+
 2. 방명록
 설명
 방문자가 메시지를 남기고 확인할 수 있는 실시간 방명록 기능 (localStorage·Firebase 지원)
