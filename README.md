@@ -1,7 +1,5 @@
 # 최지원 포트폴리오 (20252240)
 
-- 웹사이트: https://wldnjs826.github.io/
-- 깃허브: https://github.com/wldnjs826/wldnjs826.github.io
 
 프로그래밍, 게임 개발, AI 연구 프로젝트를 소개하고 온라인 이력서·자격증·방명록·다국어 등 다양한 웹 기술과 기능을 갖춘 개인 포트폴리오 웹사이트입니다.
 
@@ -21,14 +19,8 @@
 
 ## 기술 스택
 
-**Frontend**  
-HTML5, CSS3, JavaScript (ES6+), 반응형 웹, 다크/라이트 테마, i18next, FontAwesome
-
-**Backend**  
-Node.js, Express, Firebase, Nodemailer, dotenv
-
 **기타 도구**  
-Git · GitHub · AWS · Figma · Unity · Unreal · Blender
+Git · GitHub
 
 **개발 도구**  
 VSCode · Chrome DevTools · LiveServer
@@ -38,9 +30,9 @@ VSCode · Chrome DevTools · LiveServer
 ## 주요 프로젝트
 
 1. 회사 게임 프로젝트  
-   - Unity · C# · Git · Agile 협업 경험
+   - Unity · C#· Git · 협업 경험
 
-2. 3D 게임 개발 프로젝트 (예정)  
+2. 3D 게임 개발 프로젝트 (예정)  (고등학교 때 작품 이용해서 만들어봄)
    - Blender 모델링 → Unity 연동
 
 3. 게임 엔진 개발 (예정)  
@@ -48,11 +40,11 @@ VSCode · Chrome DevTools · LiveServer
 
 4. 고양이와 스프 (확장판)  
    - Unity · 2D 아트 · 멀티플레이어 기능 추가
+   - https://github.com/wldnjs826/HNUPP_PJ1
 
 5. AI 이미지 분류 성능 향상 연구  
    - TensorFlow · Python · 데이터 전처리 및 모델 개선
 
-※ 프로젝트가 없을 경우 “(예정)”으로 표기
 
 ---
 
@@ -253,11 +245,19 @@ portfolio-website/
 
 ---
 
-## 라이선스
-
-MIT License  
-자세한 내용은 [LICENSE](LICENSE) 파일 참조
-
----
 ## 테마 및 디자인
 본 포트폴리오 웹사이트는 외부 테마 없이 직접 만든 커스텀 테마를 사용합니다.
+
+---
+
+## 라이선스
+
+이 프로젝트(과제)는 학습 목적의 제출용이며,  
+MIT 라이선스 형태를 참고하여 작성되었습니다.
+
+외부에 공개하거나 활용할 경우,  
+코드의 원작자(최지원)와 이 문서의 출처를 명시해 주세요.
+
+자세한 사항은 LICENSE 파일을 참고하세요.
+
+---
