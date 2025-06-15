@@ -121,22 +121,22 @@ fetch(`https://solved.ac/api/v3/user/show?handle=${userHandle}`)
 
 ```
 
-4. 다국어 지원
-설명
+### 4. 다국어 지원
+#### 설명
 i18next 라이브러리 기반으로 전체 텍스트를 한국어/영어로 전환하는 토글
-코드 위치
+#### 코드 위치
 translations.js, script.js
-코드 설명
-
-js
-복사
-편집
+#### 코드 설명
+```
 i18next.init({ lng: 'ko', resources })
   .then(() => updateContent());
 languageToggleBtn.addEventListener('click', () => {
   const newLang = i18next.language === 'ko' ? 'en' : 'ko';
   i18next.changeLanguage(newLang).then(() => updateContent());
 });
+
+```
+
 5. 다크/라이트 모드 토글
 설명
 사용자의 시스템 선호도 또는 버튼 클릭으로 테마를 전환하고 설정을 로컬에 저장
