@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방명록 - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="scanline"></div>
+    
+    <nav class="navbar">
+        <div class="nav-brand"><a href="main.html">Portfolio</a></div>
+        <div class="nav-controls">
+            <a href="https://solved.ac/profile/cmwas4618" target="_blank" class="baekjoon-btn" aria-label="백준 프로필">
+                <i class="fas fa-laptop-code"></i>
+            </a>
+            <button id="lang-toggle-btn" aria-label="언어 변경">
+                <span class="lang-text">EN</span>
+            </button>
+            <button id="resume-download-btn" aria-label="이력서 다운로드">
+                <i class="fas fa-file-download"></i>
+            </button>
+            <button id="theme-toggle-btn" aria-label="테마 변경">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="main.html#home" data-i18n="nav.home">홈</a></li>
+            <li><a href="main.html#about" data-i18n="nav.about">소개</a></li>
+            <li><a href="main.html#skills" data-i18n="nav.skills">기술</a></li>
+            <li><a href="main.html#projects" data-i18n="nav.projects">프로젝트</a></li>
+            <li><a href="main.html#contact" data-i18n="nav.contact">연락처</a></li>
+            <li><a href="guestbook.html" class="active" data-i18n="nav.guestbook">방명록</a></li>
+            <li><a href="certificates.html" data-i18n="nav.certificates">자격증</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <section class="guestbook">
+        <h2 data-i18n="guestbook.title">방명록</h2>
+        <div class="guestbook-form">
+            <div class="form-group">
+                <label for="name" data-i18n="guestbook.nameLabel">이름</label>
+                <input type="text" id="name" data-i18n-placeholder="guestbook.namePlaceholder" placeholder="이름을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="message" data-i18n="guestbook.messageLabel">메시지</label>
+                <textarea id="message" data-i18n-placeholder="guestbook.messagePlaceholder" placeholder="메시지를 입력하세요"></textarea>
+            </div>
+            <button id="submit-btn" data-i18n="guestbook.submitButton">등록하기</button>
+        </div>
+        <div id="messages-container">
+            <div id="loading" class="hidden" data-i18n="guestbook.loadingText">로딩 중...</div>
+            <div id="error" class="hidden" data-i18n="guestbook.errorMessage">오류가 발생했습니다. 다시 시도해주세요.</div>
+            <div id="empty" class="hidden" data-i18n="guestbook.emptyMessage">아직 메시지가 없습니다.</div>
+            <div id="messages"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 최지원의 포트폴리오 | Made with <span class="heart">한남대학교</span> and <span class="code">&lt;송지영교수님&gt;</span></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="translations.js"></script>
+    <script src="resume.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 저장된 테마와 언어 불러오기
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedLang = localStorage.getItem('lang') || 'ko';
+            
+            // 초기 테마와 언어 설정
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.documentElement.setAttribute('data-lang', savedLang);
+            
+            // 테마 아이콘 초기화
+            updateThemeIcon(savedTheme === 'dark');
+            
+            // 언어 텍스트 초기화
+            const langText = document.querySelector('.lang-text');
+            langText.textContent = savedLang === 'ko' ? 'EN' : 'KO';
+
+            // 테마 토글 버튼 이벤트
+            const themeToggleBtn = document.getElementById('theme-toggle-btn');
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme === 'dark');
+            });
+
+            // 언어 토글 버튼 이벤트
+            const langToggleBtn = document.getElementById('lang-toggle-btn');
+            langToggleBtn.addEventListener('click', () => {
+                const currentLang = document.documentElement.getAttribute('data-lang');
+                const newLang = currentLang === 'ko' ? 'en' : 'ko';
+                
+                document.documentElement.setAttribute('data-lang', newLang);
+                localStorage.setItem('lang', newLang);
+                langText.textContent = newLang === 'ko' ? 'EN' : 'KO';
+                updateContent(newLang);
+            });
+
+            // 햄버거 메뉴 토글
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // 초기 컨텐츠 업데이트
+            updateContent(savedLang);
+            loadMessages();
+        });
+
+        // 테마 아이콘 업데이트
+        function updateThemeIcon(isDark) {
+            const themeIcon = document.querySelector('#theme-toggle-btn i');
+            themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // 컨텐츠 업데이트
+        function updateContent(lang) {
+            // 일반 텍스트 번역
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const translation = getTranslation(translations[lang], key);
+                if (translation) element.textContent = translation;
+            });
+
+            // placeholder 번역
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                const translation = getTranslation(translations[lang], key);
+                if (translation) element.placeholder = translation;
+            });
+
+            // 메시지 시간 업데이트
+            updateMessageTimes(lang);
+        }
+
+        // 번역 값 가져오기
+        function getTranslation(obj, path) {
+            return path.split('.').reduce((p, c) => p && p[c], obj);
+        }
+
+        // 메시지 시간 업데이트
+        function updateMessageTimes(lang) {
+            document.querySelectorAll('.message-time').forEach(timeElement => {
+                const timestamp = parseInt(timeElement.getAttribute('data-timestamp'));
+                const now = Date.now();
+                const diff = now - timestamp;
+                
+                let timeText;
+                if (diff < 60000) { // 1분 미만
+                    timeText = translations[lang].guestbook.timeAgo.now;
+                } else if (diff < 3600000) { // 1시간 미만
+                    const minutes = Math.floor(diff / 60000);
+                    timeText = `${minutes} ${translations[lang].guestbook.timeAgo.minutes}`;
+                } else if (diff < 86400000) { // 1일 미만
+                    const hours = Math.floor(diff / 3600000);
+                    timeText = `${hours} ${translations[lang].guestbook.timeAgo.hours}`;
+                } else {
+                    const days = Math.floor(diff / 86400000);
+                    timeText = `${days} ${translations[lang].guestbook.timeAgo.days}`;
+                }
+                
+                timeElement.textContent = timeText;
+            });
+        }
+
+        // 방명록 기능 구현
+        let messages = [];
+
+        // 메시지 로드
+        function loadMessages() {
+            const savedMessages = localStorage.getItem('guestbook_messages');
+            if (savedMessages) {
+                messages = JSON.parse(savedMessages);
+                displayMessages();
+            } else {
+                document.getElementById('empty').classList.remove('hidden');
+            }
+        }
+
+        // 메시지 저장
+        function saveMessages() {
+            localStorage.setItem('guestbook_messages', JSON.stringify(messages));
+        }
+
+        // 메시지 추가
+        function addMessage(name, message) {
+            const timestamp = Date.now();
+            messages.unshift({ name, message, timestamp });
+            saveMessages();
+            displayMessages();
+        }
+
+        // 메시지 표시
+        function displayMessages() {
+            const messagesDiv = document.getElementById('messages');
+            const currentLang = document.documentElement.getAttribute('data-lang');
+            
+            if (messages.length === 0) {
+                document.getElementById('empty').classList.remove('hidden');
+                messagesDiv.innerHTML = '';
+                return;
+            }
+
+            document.getElementById('empty').classList.add('hidden');
+            messagesDiv.innerHTML = messages.map(msg => `
+                <div class="message">
+                    <div class="message-header">
+                        <span class="message-name">${escapeHtml(msg.name)}</span>
+                        <span class="message-time" data-timestamp="${msg.timestamp}"></span>
+                    </div>
+                    <div class="message-content">${escapeHtml(msg.message)}</div>
+                </div>
+            `).join('');
+
+            updateMessageTimes(currentLang);
+        }
+
+        // HTML 이스케이프
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // 폼 제출 이벤트
+        document.getElementById('submit-btn').addEventListener('click', () => {
+            const nameInput = document.getElementById('name');
+            const messageInput = document.getElementById('message');
+            
+            if (nameInput.value.trim() && messageInput.value.trim()) {
+                addMessage(nameInput.value.trim(), messageInput.value.trim());
+                nameInput.value = '';
+                messageInput.value = '';
+            }
+        });
+
+        // Enter 키로 메시지 제출
+        document.getElementById('message').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                document.getElementById('submit-btn').click();
+            }
+        });
+
+        // 1분마다 시간 표시 업데이트
+        setInterval(() => {
+            const currentLang = document.documentElement.getAttribute('data-lang');
+            updateMessageTimes(currentLang);
+        }, 60000);
+
+        // 초기 메시지 로드
+        loadMessages();
+    </script>
+</body>
+</html> 

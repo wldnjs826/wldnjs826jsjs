@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="scanline"></div>
+    
+    <nav class="navbar">
+        <div class="nav-brand"><a href="main.html">Portfolio</a></div>
+        <div class="nav-controls">
+            <a href="https://solved.ac/profile/cmwas4618" target="_blank" class="baekjoon-btn" aria-label="백준 프로필">
+                <i class="fas fa-laptop-code"></i>
+            </a>
+            <button id="lang-toggle-btn" aria-label="언어 변경">
+                <span class="lang-text">EN</span>
+            </button>
+            <button id="resume-download-btn" aria-label="이력서 다운로드">
+                <i class="fas fa-file-download"></i>
+            </button>
+            <button id="theme-toggle-btn" aria-label="테마 변경">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="main.html#home" data-i18n="nav.home">홈</a></li>
+            <li><a href="main.html#about" data-i18n="nav.about">소개</a></li>
+            <li><a href="main.html#skills" data-i18n="nav.skills">기술</a></li>
+            <li><a href="main.html#projects" data-i18n="nav.projects">프로젝트</a></li>
+            <li><a href="main.html#contact" data-i18n="nav.contact">연락처</a></li>
+            <li><a href="guestbook.html" data-i18n="nav.guestbook">방명록</a></li>
+            <li><a href="certificates.html" data-i18n="nav.certificates">자격증</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>
+                <span data-i18n="home.greeting">안녕하세요</span>,<br>
+                <span data-i18n="home.intro">저는</span>
+                <span data-i18n="home.name">최지원입니다</span>
+            </h1>
+            <p data-i18n="home.description">20252240 한남대학교 컴퓨터공학과 최지원입니다.</p>
+            <a href="#contact" class="cta-button" data-i18n="home.cta">연락하기</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2 data-i18n="about.title">소개</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p data-i18n="about.description">저는 백엔드 개발에 열정을 가진 개발자입니다. 서버 아키텍처와 데이터베이스 설계에 깊은 관심을 가지고 있으며, 
+                   효율적이고 안정적인 서버 시스템 구축을 목표로 하고 있습니다. Java, Python과 같은 백엔드 기술 스택을 
+                   지속적으로 학습하며, 클라우드 환경에서의 서버 운영 및 API 개발에 전문성을 키워나가고 있습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fab fa-java"></i>
+                <h3>Java</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-python"></i>
+                <h3>Python</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-js"></i>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-c"></i>
+                <h3>C</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2 data-i18n="projects.title">프로젝트</h2>
+        <button class="project-nav-btn prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="project-nav-btn next"><i class="fas fa-chevron-right"></i></button>
+        <div class="project-section-inner">
+            <div class="project-grid">
+                <!-- 1. 회사 게임프로젝트 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/company.jpg" alt="회사 게임프로젝트">
+                        <div class="project-overlay">
+                            <div class="project-tech">
+                                <span>Unity</span>
+                                <span>C#</span>
+                                <span>Git</span>
+                                <span>Agile</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-i18n="projects.project1.title">회사 게임프로젝트</h3>
+                        <p data-i18n="projects.project1.description">친구들과 함께 게임 개발 환경에서 진행한 팀 프로젝트입니다. 언리얼 엔진을 활용하여 게임을 개발하고, 
+                        Git을 통한 버전 관리와 Agile 방법론을 적용한 프로젝트 관리 경험을 쌓았습니다.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 블렌더, 유니티 연동 게임프로젝트 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/blender.jpg" alt="블렌더 유니티 프로젝트">
+                        <div class="project-overlay">
+                            <div class="project-tech">
+                                <span>Blender</span>
+                                <span>Unity</span>
+                                <span>C#</span>
+                                <span>3D Modeling</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-i18n="projects.project2.title">3D 게임 개발 프로젝트(예정)</h3>
+                        <p data-i18n="projects.project2.description">Blender를 사용하여 직접 3D 모델을 제작하고, Unity 엔진과 연동하여 개성 있는 
+                        게임을 개발했습니다. 3D 모델링부터 게임 개발까지 전체 제작 과정을 경험했습니다.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. 게임엔진 개발 프로젝트 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/engine.jpg" alt="게임엔진 프로젝트">
+                        <div class="project-overlay">
+                            <div class="project-tech">
+                                <span>C++</span>
+                                <span>OpenGL</span>
+                                <span>DirectX</span>
+                                <span>Game Engine</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-i18n="projects.project3.title">게임엔진 개발(예정)</h3>
+                        <p data-i18n="projects.project3.description">언리얼 엔진과 유니티의 기본 구조를 분석하고, C++을 사용하여 직접 게임엔진을 구현했습니다. 
+                        렌더링 시스템, 물리 엔진, 에셋 관리 등 게임엔진의 핵심 기능을 개발했습니다.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 고양이와 스프 (확장판) -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/cat.png" alt="야옹이와 스프 - 귀여운 고양이들의 요리 모습">
+                        <div class="project-overlay">
+                            <div class="project-tech">
+                                <span>Unity</span>
+                                <span>C</span>
+                                <span>2D Art</span>
+                                <span>Game Design</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-i18n="projects.project4.title">야옹이와 스프 (확장판)</h3>
+                        <p data-i18n="projects.project4.description">귀여운 고양이 캐릭터와 함께하는 요리 시뮬레이션 게임의 확장판입니다. 
+                        새로운 레시피, 캐릭터 커스터마이징, 멀티플레이어 기능을 추가하여 게임성을 향상시켰습니다.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/wldnjs826/HNUPP_PJ1" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. AI 이미지 분류 연구 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/tenss.png" alt="AI 이미지 분류">
+                        <div class="project-overlay">
+                            <div class="project-tech">
+                                <span>TensorFlow</span>
+                                <span>Python</span>
+                                <span>Deep Learning</span>
+                                <span>Computer Vision</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-i18n="projects.project5.title">AI 이미지 분류 성능 향상 연구</h3>
+                        <p data-i18n="projects.project5.description">텐서플로우를 활용하여 이미지 분류 AI 모델의 성능을 향상시키는 연구를 진행했습니다. 
+                        데이터 전처리 최적화, 모델 아키텍처 개선, 학습 파라미터 튜닝을 통해 분류 정확도를 개선했습니다.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span class="scroll-dot active"></span>
+                <span class="scroll-dot"></span>
+                <span class="scroll-dot"></span>
+                <span class="scroll-dot"></span>
+                <span class="scroll-dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 data-i18n="contact.title">연락처</h2>
+        <div class="contact-content">
+            <form id="contact-form">
+                <input type="text" data-i18n-placeholder="contact.name" placeholder="이름" required>
+                <input type="email" data-i18n-placeholder="contact.email" placeholder="이메일" required>
+                <textarea data-i18n-placeholder="contact.message" placeholder="메시지" required></textarea>
+                <button type="submit" data-i18n="contact.send">보내기</button>
+            </form>
+            <div class="social-links">
+                <a href="https://github.com/wldnjs826" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="messages.html" id="messages-link"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 최지원의 포트폴리오 | Made with <span class="heart">한남대학교</span> and <span class="code">&lt;송지영교수님&gt;</span></p>
+    </footer>
+    <script src="translations.js" defer></script>
+    <script src="resume.js" defer></script>
+    <script src="script.js" defer></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var msgLink = document.getElementById('messages-link');
+      if(msgLink) {
+        msgLink.addEventListener('click', function(e) {
+          window.location.href = 'messages.html';
+        });
+      }
+    });
+    </script>
+</body>
+</html>

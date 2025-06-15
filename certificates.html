@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자격증 - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="scanline"></div>
+    
+    <nav class="navbar">
+        <div class="nav-brand"><a href="main.html">Portfolio</a></div>
+        <div class="nav-controls">
+            <a href="https://solved.ac/profile/cmwas4618" target="_blank" class="baekjoon-btn" aria-label="백준 프로필">
+                <i class="fas fa-laptop-code"></i>
+            </a>
+            <button id="lang-toggle-btn" aria-label="언어 변경">
+                <span class="lang-text">EN</span>
+            </button>
+            <button id="resume-download-btn" aria-label="이력서 다운로드">
+                <i class="fas fa-file-download"></i>
+            </button>
+            <button id="theme-toggle-btn" aria-label="테마 변경">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="main.html#home" data-i18n="nav.home">홈</a></li>
+            <li><a href="main.html#about" data-i18n="nav.about">소개</a></li>
+            <li><a href="main.html#skills" data-i18n="nav.skills">기술</a></li>
+            <li><a href="main.html#projects" data-i18n="nav.projects">프로젝트</a></li>
+            <li><a href="main.html#contact" data-i18n="nav.contact">연락처</a></li>
+            <li><a href="guestbook.html" data-i18n="nav.guestbook">방명록</a></li>
+            <li><a href="certificates.html" class="active" data-i18n="nav.certificates">자격증</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <section class="certificates">
+        <h2 data-i18n="certificates.title">자격증</h2>
+        <div class="certificates-grid">
+            <div class="certificate-card">
+                <div class="certificate-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="certificate-info">
+                    <h3 data-i18n="certificates.cert1.name">정보처리기사 (예정)</h3>
+                    <p>
+                        <span data-i18n="certificates.issueDate">발급일</span>: 
+                        <span data-i18n="certificates.cert1.date">2025년</span>
+                    </p>
+                    <p>
+                        <span data-i18n="certificates.issuedBy">발급기관</span>: 
+                        <span data-i18n="certificates.cert1.org">한국산업인력공단</span>
+                    </p>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="certificate-info">
+                    <h3 data-i18n="certificates.cert2.name">SQL 개발자(SQLD) (예정)</h3>
+                    <p>
+                        <span data-i18n="certificates.issueDate">발급일</span>: 
+                        <span data-i18n="certificates.cert2.date">202년</span>
+                    </p>
+                    <p>
+                        <span data-i18n="certificates.issuedBy">발급기관</span>: 
+                        <span data-i18n="certificates.cert2.org">한국데이터산업진흥원</span>
+                    </p>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <div class="certificate-info">
+                    <h3 data-i18n="certificates.cert3.name">컴퓨터활용능력 1급</h3>
+                    <p>
+                        <span data-i18n="certificates.issueDate">발급일</span>: 
+                        <span data-i18n="certificates.cert3.date">2025년</span>
+                    </p>
+                    <p>
+                        <span data-i18n="certificates.issuedBy">발급기관</span>: 
+                        <span data-i18n="certificates.cert3.org">대한상공회의소</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 최지원의 포트폴리오 | Made with <span class="heart">한남대학교</span> and <span class="code">&lt;송지영교수님&gt;</span></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="translations.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 저장된 테마 불러오기
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme === 'dark');
+
+            // 테마 토글 버튼 이벤트
+            const themeToggleBtn = document.getElementById('theme-toggle-btn');
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme === 'dark');
+            });
+
+            // 언어 토글 버튼 이벤트
+            const langToggleBtn = document.getElementById('lang-toggle-btn');
+            const langText = langToggleBtn.querySelector('.lang-text');
+            const savedLang = localStorage.getItem('lang') || 'ko';
+            document.documentElement.setAttribute('data-lang', savedLang);
+            langText.textContent = savedLang === 'ko' ? 'EN' : 'KO';
+
+            langToggleBtn.addEventListener('click', () => {
+                const currentLang = document.documentElement.getAttribute('data-lang');
+                const newLang = currentLang === 'ko' ? 'en' : 'ko';
+                
+                document.documentElement.setAttribute('data-lang', newLang);
+                localStorage.setItem('lang', newLang);
+                langText.textContent = newLang === 'ko' ? 'EN' : 'KO';
+                updateContent(newLang);
+            });
+
+            // 초기 컨텐츠 업데이트
+            updateContent(savedLang);
+        });
+
+        // 테마 아이콘 업데이트
+        function updateThemeIcon(isDark) {
+            const themeIcon = document.querySelector('#theme-toggle-btn i');
+            themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // 컨텐츠 업데이트
+        function updateContent(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const translation = getTranslation(translations[lang], key);
+                if (translation) element.textContent = translation;
+            });
+        }
+
+        // 번역 값 가져오기
+        function getTranslation(obj, path) {
+            return path.split('.').reduce((p, c) => p && p[c], obj);
+        }
+    </script>
+</body>
+</html> 

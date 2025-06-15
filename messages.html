@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메시지 모아보기</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="scanline"></div>
+    <nav class="navbar">
+        <div class="nav-brand"><a href="main.html">Portfolio</a></div>
+        <div class="nav-controls">
+            <a href="https://solved.ac/profile/cmwas4618" target="_blank" class="baekjoon-btn" aria-label="백준 프로필">
+                <i class="fas fa-laptop-code"></i>
+            </a>
+            <button id="lang-toggle-btn" aria-label="언어 변경">
+                <span class="lang-text">EN</span>
+            </button>
+            <button id="resume-download-btn" aria-label="이력서 다운로드">
+                <i class="fas fa-file-download"></i>
+            </button>
+            <button id="theme-toggle-btn" aria-label="테마 변경">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="main.html#home">홈</a></li>
+            <li><a href="main.html#about">소개</a></li>
+            <li><a href="main.html#skills">기술</a></li>
+            <li><a href="main.html#projects">프로젝트</a></li>
+            <li><a href="main.html#contact">연락처</a></li>
+            <li><a href="guestbook.html">방명록</a></li>
+            <li><a href="certificates.html">자격증</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+    <section class="messages">
+        <h2>연락처 메시지 모아보기</h2>
+        <div id="messages-list">
+            <!-- 메시지 목록이 여기에 표시됩니다 -->
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 최지원의 포트폴리오 | Made with <span class="heart">한남대학교</span> and <span class="code">&lt;송지영교수님&gt;</span></p>
+    </footer>
+    <script src="messages.js"></script>
+    <script src="resume.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 테마
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme); // 반전 없이 그대로 적용
+        updateThemeIcon(savedTheme === 'dark'); // 다크면 해, 라이트면 달
+
+        // 언어
+        const savedLang = localStorage.getItem('lang') || 'ko';
+        document.documentElement.setAttribute('data-lang', savedLang);
+        const langText = document.querySelector('.lang-text');
+        langText.textContent = savedLang === 'ko' ? 'EN' : 'KO';
+
+        // 테마 토글 버튼
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme); // 반전 없이 저장
+            updateThemeIcon(newTheme === 'dark');
+        });
+
+        // 언어 토글 버튼
+        const langToggleBtn = document.getElementById('lang-toggle-btn');
+        langToggleBtn.addEventListener('click', () => {
+            const currentLang = document.documentElement.getAttribute('data-lang');
+            const newLang = currentLang === 'ko' ? 'en' : 'ko';
+            document.documentElement.setAttribute('data-lang', newLang);
+            localStorage.setItem('lang', newLang);
+            langText.textContent = newLang === 'ko' ? 'EN' : 'KO';
+        });
+    });
+    function updateThemeIcon(isDark) {
+        const themeIcon = document.querySelector('#theme-toggle-btn i');
+        themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+    }
+    </script>
+</body>
+</html> 
