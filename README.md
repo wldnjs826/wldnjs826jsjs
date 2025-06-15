@@ -65,18 +65,135 @@ VSCode · Chrome DevTools · LiveServer
 
 ## 추가 기능 및 이력
 
-| No. | 기능                  | 설명                                               | 파일 위치                             |
-|-----|----------------------|--------------------------------------------------|------------------------------------|
-| 1   | 이력서 다운로드       | 버튼 클릭 시 PDF 이력서 다운로드                     | `resume.js`, `<a download>` 태그         |
-| 2   | 방명록               | 방문자 메시지 등록·조회 (localStorage·Firebase)     | `guestbook.html`, `guestbook.js`   |
-| 3   | 백준 연동            | Baekjoon solved 문제 수·랭킹 프로필 표시            | `baekjoon.html`, `baekjoon.js`     |
-| 4   | 다국어 지원          | EN/KO 전환 토글 (i18next 기반)                     | `translations.js`, `script.js`     |
-| 5   | 다크/라이트 모드      | 시스템 선호도 또는 버튼 클릭으로 테마 전환            | `theme-toggle.js`, `theme.css`     |
-| 6   | 연락처 폼            | 이메일·SNS 링크 외 문의 메시지 전송 (Formspree)    | `contact.html`, `contact.js`       |
-| 7   | 자격증 섹션          | 취득 및 예정 자격증 카드 형식 표시                  | `certificates.html`, `cert.css`    |
+1. 이력서 다운로드
+설명
+버튼 클릭 시 PDF 이력서를 즉시 다운로드
+코드 위치
+resume.js, 메인 HTML(index.html 등) 내 <a download> 태그
+코드 설명
 
-각 기능별 상세 설명과 코드 예시는 프로젝트 내 README의 “추가 기능” 섹션 참조
+js
+복사
+편집
+resumeDownloadBtn.addEventListener('click', () => {
+  const resumePath = 'assets/resume.pdf';
+  const link = document.createElement('a');
+  link.href = resumePath;
+  link.download = '최지원_이력서.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+});
+2. 방명록
+설명
+방문자가 메시지를 남기고 확인할 수 있는 실시간 방명록 기능 (localStorage·Firebase 지원)
+코드 위치
+guestbook.html, guestbook.js
+코드 설명
 
+js
+복사
+편집
+// Firebase 초기화
+const db = firebase.database().ref('guestbook');
+// 메시지 전송
+function postMessage(name, message) {
+  db.push({ name, message, timestamp: Date.now() });
+}
+// 메시지 수신 및 렌더링
+db.on('child_added', snapshot => {
+  const entry = snapshot.val();
+  renderEntry(entry.name, entry.message, entry.timestamp);
+});
+3. 백준 연동
+설명
+Baekjoon Online Judge API를 사용해 해결한 문제 수와 랭킹 프로필을 표시
+코드 위치
+baekjoon.html, baekjoon.js
+코드 설명
+
+js
+복사
+편집
+fetch(`https://solved.ac/api/v3/user/show?handle=${userHandle}`)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('solved-count').textContent = data.solvedCount;
+    document.getElementById('rank').textContent = data.rank;
+  });
+4. 다국어 지원
+설명
+i18next 라이브러리 기반으로 전체 텍스트를 한국어/영어로 전환하는 토글
+코드 위치
+translations.js, script.js
+코드 설명
+
+js
+복사
+편집
+i18next.init({ lng: 'ko', resources })
+  .then(() => updateContent());
+languageToggleBtn.addEventListener('click', () => {
+  const newLang = i18next.language === 'ko' ? 'en' : 'ko';
+  i18next.changeLanguage(newLang).then(() => updateContent());
+});
+5. 다크/라이트 모드 토글
+설명
+사용자의 시스템 선호도 또는 버튼 클릭으로 테마를 전환하고 설정을 로컬에 저장
+코드 위치
+theme-toggle.js, theme.css
+코드 설명
+
+js
+복사
+편집
+const currentTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', currentTheme);
+toggleBtn.addEventListener('click', () => {
+  const theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+});
+6. 연락처 폼
+설명
+이메일 및 SNS 링크 외에 간단한 문의 메시지를 전송하는 폼 (Formspree 연동)
+코드 위치
+contact.html, contact.js
+코드 설명
+
+js
+복사
+편집
+contactForm.addEventListener('submit', e => {
+  e.preventDefault();
+  fetch(formspreeEndpoint, {
+    method: 'POST',
+    body: new FormData(contactForm)
+  }).then(() => alert('메시지를 전송했습니다.'));
+});
+7. 자격증 섹션
+설명
+취득 완료 및 예정 자격증을 카드 형식으로 시각화하여 표시
+코드 위치
+certificates.html, cert.css
+코드 설명
+
+html
+복사
+편집
+<div class="certificate-card" data-issue="2025-06">
+  <h3>정보처리기사</h3>
+  <p>발급 예정: 2025-06</p>
+</div>
+css
+복사
+편집
+.certificate-card {
+  display: grid;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 ---
 
 ## 파일 구조
