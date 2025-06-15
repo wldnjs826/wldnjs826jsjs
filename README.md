@@ -137,16 +137,13 @@ languageToggleBtn.addEventListener('click', () => {
 
 ```
 
-5. 다크/라이트 모드 토글
-설명
+### 5. 다크/라이트 모드 토글
+#### 설명
 사용자의 시스템 선호도 또는 버튼 클릭으로 테마를 전환하고 설정을 로컬에 저장
-코드 위치
+#### 코드 위치
 theme-toggle.js, theme.css
-코드 설명
-
-js
-복사
-편집
+#### 코드 설명
+```
 const currentTheme = localStorage.getItem('theme') || 'light';
 document.documentElement.setAttribute('data-theme', currentTheme);
 toggleBtn.addEventListener('click', () => {
@@ -154,16 +151,15 @@ toggleBtn.addEventListener('click', () => {
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('theme', theme);
 });
-6. 연락처 폼
-설명
-이메일 및 SNS 링크 외에 간단한 문의 메시지를 전송하는 폼 (Formspree 연동)
-코드 위치
-contact.html, contact.js
-코드 설명
 
-js
-복사
-편집
+```
+### 6. 연락처 폼
+#### 설명
+이메일 및 SNS 링크 외에 간단한 문의 메시지를 전송하는 폼 (Formspree 연동)
+#### 코드 위치
+contact.html, contact.js
+#### 코드 설명
+```
 contactForm.addEventListener('submit', e => {
   e.preventDefault();
   fetch(formspreeEndpoint, {
@@ -171,29 +167,29 @@ contactForm.addEventListener('submit', e => {
     body: new FormData(contactForm)
   }).then(() => alert('메시지를 전송했습니다.'));
 });
-7. 자격증 섹션
-설명
+```
+### 7. 자격증 섹션
+#### 설명
 취득 완료 및 예정 자격증을 카드 형식으로 시각화하여 표시
-코드 위치
+#### 코드 위치
 certificates.html, cert.css
-코드 설명
-
-html
-복사
-편집
+#### 코드 설명
+##### html
+```
 <div class="certificate-card" data-issue="2025-06">
   <h3>정보처리기사</h3>
   <p>발급 예정: 2025-06</p>
 </div>
-css
-복사
-편집
+```
+##### css
+```
 .certificate-card {
   display: grid;
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+```
 ---
 
 ## 파일 구조
