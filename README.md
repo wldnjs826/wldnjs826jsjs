@@ -83,16 +83,14 @@ resume.js, 메인 HTML(index.html 등) 내 <a download> 태그
 ```
 
 
-2. 방명록
-설명
+### 2. 방명록
+#### 설명
 방문자가 메시지를 남기고 확인할 수 있는 실시간 방명록 기능 (localStorage·Firebase 지원)
-코드 위치
+#### 코드 위치
 guestbook.html, guestbook.js
-코드 설명
+#### 코드 설명
 
-js
-복사
-편집
+```
 // Firebase 초기화
 const db = firebase.database().ref('guestbook');
 // 메시지 전송
@@ -104,22 +102,25 @@ db.on('child_added', snapshot => {
   const entry = snapshot.val();
   renderEntry(entry.name, entry.message, entry.timestamp);
 });
-3. 백준 연동
-설명
-Baekjoon Online Judge API를 사용해 해결한 문제 수와 랭킹 프로필을 표시
-코드 위치
-baekjoon.html, baekjoon.js
-코드 설명
+```
 
-js
-복사
-편집
+### 3. 백준 연동
+#### 설명
+Baekjoon Online Judge API를 사용해 해결한 문제 수와 랭킹 프로필을 표시
+#### 코드 위치
+baekjoon.html, baekjoon.js
+#### 코드 설명
+
+```
 fetch(`https://solved.ac/api/v3/user/show?handle=${userHandle}`)
   .then(res => res.json())
   .then(data => {
     document.getElementById('solved-count').textContent = data.solvedCount;
     document.getElementById('rank').textContent = data.rank;
   });
+
+```
+
 4. 다국어 지원
 설명
 i18next 라이브러리 기반으로 전체 텍스트를 한국어/영어로 전환하는 토글
