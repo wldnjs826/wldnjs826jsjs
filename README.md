@@ -193,33 +193,56 @@ certificates.html, cert.css
 ---
 
 ## 파일 구조
-***
 portfolio-website/
+
 ├── index.html
+
 ├── about.html
+
 ├── skills.html
+
 ├── projects.html
+
 ├── contact.html
+
 ├── guestbook.html
+
 ├── certificates.html
+
 ├── baekjoon.html
+
 ├── style.css
+
 ├── theme.css
+
 ├── script.js
+
 ├── resume.js
+
 ├── translations.js
+
 ├── guestbook.js
+
 ├── contact.js
+
 ├── baekjoon.js
+
 ├── theme-toggle.js
+
 ├── cert.css
+
 ├── assets/
+
 │ ├── resume.pdf
+
 │ └── images/
+
 ├── server.js
+
 ├── package.json
+
 └── README.md
-***
+
 ---
 
 ## 배포 정보
